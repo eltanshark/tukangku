@@ -1,0 +1,57 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+{% block head %}
+{% endblock %}
+<body>
+
+	<!-- Start Header Area-->
+	{% block header %}
+	{% endblock %}
+	<!-- End Header Area -->
+
+	<!-- start banner Area -->
+	{% block banner %}
+	{% endblock %}
+	<!-- End banner Area -->
+
+	<!-- Start Bar Area -->
+	{% block bar %}
+	{% endblock %}
+	<!-- End Bar Area -->
+
+	<!-- Konten -->
+	{% block konten %}
+	{% endblock %}
+	<!-- end product Area -->
+
+	<!-- Start Features Area -->
+	{% block features %}
+	{% endblock %}
+	<!-- End Features Area-->
+
+	<!-- Start Footer Area -->
+	{% block footer %}
+	{% endblock %}
+	<!-- End Footer Area -->
+
+	
+	<script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+	<script src="{% static 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js' %}" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	 crossorigin="anonymous"></script>
+	<script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+	<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+	<script src="{% static 'js/jquery.sticky.js' %}"></script>
+	<script src="{% static 'js/nouislider.min.js' %}"></script>
+	<script src="{% static 'js/countdown.js' %}"></script>
+	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<!--gmaps Js-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+	<script src="{% static 'js/gmaps.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
