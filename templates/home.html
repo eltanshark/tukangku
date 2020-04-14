@@ -1,9 +1,11 @@
+{% extends 'index.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
-	
+{% block head %}
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,9 +30,11 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
+{% endblock %}
 <body>
 
 	<!-- Start Header Area -->
+	{% block header %}
 	<header class="header_area sticky-header">
 		<div class="main_menu">
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
@@ -46,10 +50,10 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item "><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-							<li class="nav-item active"><a class="nav-link" href="{% url 'daftar' %}">Daftar</a></li>
-							
-							<li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+							<li class="nav-item active "><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="{% url 'minta' %}">Daftar</a></li>
+							<li class="nav-item"><a class="nav-link" href="{% url 'minta' %}">Request</a></li>
+							<li class="nav-item"><a class="nav-link" href="{% url 'pesan' %}">Contact</a></li>
 								</ul>
 								<ul class="nav navbar-nav navbar-right">
 								<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
@@ -71,8 +75,11 @@
 			</div>
 		</div>
 	</header>
+	{% endblock %}
 	<!-- End Header Area -->
+
 	<!-- start banner Area -->
+	{% block banner %}
 	<section class="banner-area">
 		<div class="container">
 			<div class="row fullscreen align-items-center justify-content-start">
@@ -87,7 +94,7 @@
 										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
 									<div class="add-bag d-flex align-items-center">
 										<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
-										<span class="add-text text-uppercase">Add to Bag</span>
+										<span class="add-text text-uppercase">Selengkapnya</span>
 									</div>
 								</div>
 							</div>
@@ -121,70 +128,107 @@
 			</div>
 		</div>
 	</section>
+	{% endblock %}
 	<!-- End banner Area -->
-	<!-- Features Area -->
-	<section class="features-area section_gap">
+	<!-- Start Konten Area -->
+	{% block konten %}
+	<section class="owl-carousel section_gap">
+		<!-- Single Product -->
 		<div class="container">
-			<div class="row features-inner">
-				<!-- Features -->
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="singel-features" style="margin: 10px;">
-						<div style="margin-top: 10px;">
+			<div class="row justify-content-center">
+				<div class="col-lg-6">
+					<div class="section-title">
+						<h1>Tukang Terbaru</h1>
+						<h6>Hand-vetted, verified talent, for all your professional needs</h6>
+					</div>
+				</div>
+				<div class="col-lg-6 text-right">
+					<a href="#"><button class="btn primary-btn" >Selengkapnya</button></a>
+				</div>
+			</div>
+			<div class="row">
+				<!-- single product -->
+				{% for prof in profile %}
+				<a href="#">
+				<div class="col-lg-3 col-md-6">
+					<div class="single-product">
+						<img class="img-fluid" src="{% static 'upload/img/product/p8.jpg' %}" alt="">
+						<div class="product-details">
 							
-							<h1>Form Pendaftaran</h1>
-							<h6>Sub Judul</h6>
-							<div class="testbox">
-								<form action="" method="POST"> 
-									{% csrf_token %}
-									<div class="item-form">
-									  <label for="nama">Nama<span>*</span></label>
-									  {{form.nama}}
-									</div>
-									<div class="item-form">
-									  <label for="email">Email<span>*</span></label>
-									  {{form.email}}
-									</div>
-									<div class="item-form">
-									  <label for="telepon">Nomor Telepon<span>*</span></label>
-									  {{form.telepon}}
-									</div>
-									<div class="item-form">
-										<label for="alamat">Alamat<span>*</span></label>
-										{{form.alamat}}
-									</div>
-									<div class="item-form">
-										<label for="street">Umur<span>*</span></label>
-										{{form.umur}}
-									</div>
-									<div class="item-form">
-									  <label for="gender">Gender<span>*</span></label>
-									  <label for="sub_gender">Ketik P untuk Pria dan W untuk Wanita <span>**</span></label>
-									  {{form.gender}}
-									</div>
-									<div class="item-form">
-									  <label for="posisi">Posisi Pekerjaan<span>*</span></label>
-									  {{form.posisi}}
-									</div>
-									<div class="item-form">
-									  <label for="posisi">Posisi Pekerjaan<span>*</span></label>
-									  {{form.image}}
-									</div>
-									  </div>
-									<div class="btn-block">
-									  <input type="SUBMIT" value="SUBMIT">
-									</div>
-								</form>
+							<h6>{{ prof.nama }}</h6>
+							<div class="price">
+								<p style="color:rgb(92, 92, 92);">{{prof.alamat}}</p>
+							</div>
+							<div class="prd-bottom">
+								<a href="" class="social-info">
+								<span class="ti-bag"></span>
+									<p class="hover-text">Like</p>
+								</a>
+								<a href="" class="social-info">
+									<span class="lnr lnr-heart"></span>
+									<p class="hover-text">Comments</p>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- End Features-->
+				</a>
+				{% endfor %}
 			</div>
 		</div>
-    </section>
-    
+	</section>
+	{% endblock %}
+	<!-- End Konten Area -->
 
-	<!-- start footer Area -->
+
+	<!-- Start Bar Area -->
+	{% block bar %}
+	<section class="features-area section_gap">
+		<div class="container">
+			<div class="row features-inner">
+				<div class="col-lg-6">
+					<div class="section-title">
+						<h1>Tukang Teratas</h1>
+						<h6>Hand-vetted, verified talent, for all your professional needs</h6>
+					</div>
+				</div>
+				<div class="col-lg-6 text-right">
+					<a href="#"><button class="btn primary-btn" >Selengkapnya</button></a>
+				</div>
+				{% for prof in profile %}
+				<a href="#">
+				<div class="col-lg-3 col-md-6">
+					<div class="single-product">
+						<img class="img-fluid" src="{% static 'upload/img/product/p8.jpg' %}" alt="">
+						<div class="product-details">
+							
+							<h6>{{ prof.nama }}</h6>
+							<div class="price">
+								<p style="color:rgb(92, 92, 92);">{{prof.alamat}}</p>
+							</div>
+							<div class="prd-bottom">
+								<a href="" class="social-info">
+								<span class="ti-bag"></span>
+									<p class="hover-text">Like</p>
+								</a>
+								<a href="" class="social-info">
+									<span class="lnr lnr-heart"></span>
+									<p class="hover-text">Comments</p>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				</a>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	{% endblock %}
+	<!-- End Bar Area -->
+	
+	<!-- start footer Area -->	
+	{% block footer %}
 	<footer class="footer-area section_gap">
 		<div class="container">
 			<div class="row">
@@ -254,6 +298,7 @@
 			</div>
 		</div>
 	</footer>
+	{% endblock %}
 	<!-- End footer Area -->
 
 	

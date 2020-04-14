@@ -36,7 +36,6 @@ class Daftar(models.Model):
     gender      = models.CharField(max_length=1)
     posisi      = models.CharField(max_length=50)
     buat        = models.DateTimeField(auto_now=True)
-    image       = models.ImageField(upload_to='upload/', default='upload/default-image.jpg')
 
     def __str__(self):
         return self.nama + ' -- ' + self.email + ' -- ' + self.alamat
@@ -55,5 +54,18 @@ class Pesan(models.Model):
     
     class Meta:
         verbose_name_plural = 'Data-Pesan'
+
+class Minta(models.Model):
+    judul       = models.CharField(max_length=100)
+    perusahaan  = models.CharField(max_length=50)
+    estimasi    = models.CharField(max_length=10)
+    buat        = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.judul + ' -- ' + self.perusahaan
+
+    class Meta:
+        verbose_name_plural = 'Data-Minta'
+
 
 

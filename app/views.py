@@ -1,36 +1,60 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
 
+from .forms import DaftarForm, PesanForm, MintaForm
+from .models import Daftar, Pesan, Minta
 
-from .forms import DaftarForm, PesanForm
-from .models import Daftar
-
-# Create your views here.
+# Parent
 def index(request):
     return render(request, 'index.html')
 
 def contact(request):
     return render(request, 'contact.html')
 
+def pesan_extend(request):
+    return render(request, 'meong.html')
+
+
+
+# Child
+
+def minta(request):
+    mintakonten = Minta.objects.order_by('-buat')[:4]
+    form = MintaForm()
+    if request.method == 'POST':
+        form = MintaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("minta"))
+
+    context = { 'form': form, 'request': minta }
+    return render(request, 'request.html', context)
+
 def home(request):
-    form = DaftarForm()
     profile = Daftar.objects.order_by('-buat')[:4]
+    form = DaftarForm()
     if request.method == 'POST':
         form = DaftarForm(request.POST)
         if form.is_valid():
             form.save()
-            form = DaftarForm()
+            return HttpResponseRedirect(reverse("home"))
 
     context = {'form': form, 'profile': profile}
-    return render(request, 'daftar.html', context)
+    return render(request, 'home.html', context)
 
 def pesan(request):
-    psn = PesanForm()
+    form = PesanForm()
     if request.method == 'POST':
-        psn = PesanForm(request.POST)
-        if psn.is_valid():
-            psn.save()
-            psn = PesanForm()
+        form = PesanForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("pesan"))
 
-    context = {'psn': psn}
-    return render(request, 'contact.html', context)
+    context = {'form': form}
+    return render(request, 'pesan.html', context)
+
+
+
+
   
