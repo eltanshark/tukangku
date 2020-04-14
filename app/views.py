@@ -12,13 +12,12 @@ def index(request):
 def contact(request):
     return render(request, 'contact.html')
 
-def pesan_extend(request):
-    return render(request, 'meong.html')
+def aplicant(request):
+    return render(request, 'minta.html')
 
 
 
 # Child
-
 def minta(request):
     mintakonten = Minta.objects.order_by('-buat')[:4]
     form = MintaForm()
@@ -31,16 +30,19 @@ def minta(request):
     context = { 'form': form, 'request': minta }
     return render(request, 'request.html', context)
 
-def home(request):
-    profile = Daftar.objects.order_by('-buat')[:4]
+def daftar(request):
     form = DaftarForm()
     if request.method == 'POST':
         form = DaftarForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse("home"))
+            return HttpResponseRedirect(reverse("daftar"))
+    context = { 'form': form }
+    return render(request, 'daftar.html', context)
 
-    context = {'form': form, 'profile': profile}
+def home(request):
+    profile = Daftar.objects.order_by('-buat')[:4]
+    context = {'profile': profile}
     return render(request, 'home.html', context)
 
 def pesan(request):

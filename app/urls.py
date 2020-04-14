@@ -9,7 +9,8 @@ from .views import (
     contact, 
     pesan,
     minta,
-    pesan_extend,
+    aplicant,
+    daftar,
 )
 
 urlpatterns = [
@@ -17,10 +18,11 @@ urlpatterns = [
     path('', home, name='home'),
     path('pesan/', pesan, name='pesan' ),
     path('request/', minta, name='minta'),
+    path('daftar/', daftar, name='daftar'),
 
     # Child
     path('index/', index, name='index'),
     path('contact/', contact, name='contact'), 
-    path('pesan-extend/', pesan_extend, name='pesan_extend'),
+    path('aplicant/', aplicant, name='aplicant'),
 ]
 
